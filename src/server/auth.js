@@ -111,13 +111,3 @@ export function logoutUser(user) {
 
   return db.deleteAccesstokensForUser(user.id);
 }
-
-export function checkIfAdmin(user) {
-  return db.getUserRole(user.id)
-    .then(role => {
-      if (role.name == 'admin') {
-        return Promise.resolve();
-      }
-      return createErrorPromise('Invalid credentials', 401);
-    });
-}
